@@ -34,39 +34,41 @@ const VendorCertificatesTable: React.FC<VendorCertificatesTableProps> = ({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </Head>
-      <div role="region" aria-label="Certificates table" tabIndex={0}>
-        <table className={styles.table} aria-label="Vendor certificates">
-          <caption className={styles.visuallyHidden}>
-            List of certificates issued by the vendor
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Type</th>
-              <th scope="col">Department</th>
-              <th scope="col">Issue Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {displayedCertificates.map((certificate) => (
-              <tr key={certificate._id}>
-                <td>
-                  <Link
-                    href={`https://e-verify.technotran.in/certificate/${certificate.certificateId}`}
-                    className={styles.link}
-                    aria-label={`View certificate for ${certificate.name}`}
-                    target="_blank"
-                  >
-                    {certificate.name}
-                  </Link>
-                </td>
-                <td>{certificate.type}</td>
-                <td>{certificate.department}</td>
-                <td>{new Date(certificate.issueDate).toLocaleDateString()}</td>
+      <div className={styles.responsiveTableContainer} role="region" aria-label="Certificates table" tabIndex={0}>
+        <div className={styles.tableWrapper}>
+          <table className={styles.table} aria-label="Vendor certificates">
+            <caption className={styles.visuallyHidden}>
+              List of certificates issued by the vendor
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Department</th>
+                <th scope="col">Issue Date</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {displayedCertificates.map((certificate) => (
+                <tr key={certificate._id}>
+                  <td>
+                    <Link
+                      href={`https://e-verify.technotran.in/certificate/${certificate.certificateId}`}
+                      className={styles.link}
+                      aria-label={`View certificate for ${certificate.name}`}
+                      target="_blank"
+                    >
+                      {certificate.name}
+                    </Link>
+                  </td>
+                  <td>{certificate.type}</td>
+                  <td>{certificate.department}</td>
+                  <td>{new Date(certificate.issueDate).toLocaleDateString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <TablePagination
           component="div"
           count={certificates.length}
@@ -78,11 +80,14 @@ const VendorCertificatesTable: React.FC<VendorCertificatesTableProps> = ({
           sx={{
             "& .MuiTablePagination-toolbar": {
               fontFamily: `"Quicksand", sans-serif`,
+              width: "100%",
             },
             "& .MuiTablePagination-selectLabel, & .MuiTablePagination-input, & .MuiTablePagination-displayedRows":
               {
                 fontFamily: `"Quicksand", sans-serif`,
               },
+            width: "100%",
+            marginTop: "10px",
           }}
           aria-label="Table pagination controls"
         />

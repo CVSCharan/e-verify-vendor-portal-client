@@ -16,11 +16,13 @@
   justify-content: flex-start;
   align-items: center;
   padding: 2rem; /* Added padding for a spacious feel */
-  background-color: #f8fafc; /* Light background color */
-  background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px),
-    radial-gradient(circle, #d1d5db 1px, transparent 1px); /* Grid pattern */
-  background-position: 0 0, 25px 25px; /* Offset the grid */
-  background-size: 50px 50px; /* Set the grid size */
+  background-color: #f9f9f9; /* Subtle off-white background */
+  background-image: linear-gradient(
+      rgba(220, 220, 220, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(220, 220, 220, 0.1) 1px, transparent 1px); /* Subtle grid pattern */
+  background-size: 20px 20px; /* Smaller, more refined grid */
 }
 
 /* Welcome Section */
@@ -34,7 +36,7 @@
   max-width: 80rem;
   width: 100%;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .heading {
@@ -63,9 +65,9 @@
 }
 
 .selectContainer {
-  margin-top: 0.7rem;
-  padding: 1rem;
-  max-width: 550px;
+  margin-top: 0.5rem;
+  padding: 0.7rem;
+  max-width: 500px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -80,7 +82,7 @@
   margin-bottom: 8px;
   font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   text-align: center;
 }
 
@@ -103,8 +105,8 @@
 
 /* Form container styles */
 .formContainer {
-  margin-top: 1rem;
-  padding: 2rem;
+  margin-top: 0.5rem;
+  padding: 1.5rem;
   background-color: #ffffff; /* White background */
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -138,7 +140,7 @@
   }
 
   .heading {
-    font-size: 2.7rem;
+    font-size: 2.2rem;
     margin-bottom: 1rem;
   }
 
@@ -148,7 +150,8 @@
   }
 
   .welcomeText {
-    font-size: 1.4rem;
+    font-size: 1rem;
+    max-width: 450px;
   }
 
   .formContainer {
@@ -316,7 +319,6 @@
   }
 }
 
-
 /* Add these responsive styles to your existing CSS file */
 
 .responsiveMain {
@@ -328,40 +330,40 @@
   .mainBody {
     padding: 1rem;
   }
-  
+
   .landingSection {
     width: 100%;
     padding: 1rem;
   }
-  
+
   .welcomeSection {
     width: 100%;
     text-align: center;
   }
-  
+
   .heading {
     font-size: 1.8rem;
   }
-  
+
   .subHeading {
     font-size: 1.2rem;
   }
-  
+
   .welcomeText {
     font-size: 1rem;
     padding: 0 0.5rem;
   }
-  
+
   .selectContainer {
     width: 100%;
     margin: 1rem 0;
   }
-  
+
   .selectDropdown {
     width: 100%;
     max-width: 100%;
   }
-  
+
   .formContainer {
     width: 100%;
     padding: 0.5rem;
@@ -372,15 +374,15 @@
   .heading {
     font-size: 1.5rem;
   }
-  
+
   .subHeading {
     font-size: 1rem;
   }
-  
+
   .welcomeText {
     font-size: 0.9rem;
   }
-  
+
   .selectLabel {
     font-size: 0.9rem;
   }
