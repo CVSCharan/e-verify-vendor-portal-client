@@ -16,7 +16,7 @@ export default function VendorLoginModal({
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [message, setMessage] = useState<string | null>(null);
+  // Removing the unused message state
   const [forgotPasswordOpen, setForgotPasswordOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -63,11 +63,11 @@ export default function VendorLoginModal({
 
       if (response.ok) {
         login(data);
-        setMessage(data.message);
+        // Removed setMessage call
         setError(null);
         router.push(`/dashboard`);
       } else {
-        setMessage(null);
+        // Removed setMessage call
         setError(data.message || "Login failed. Please try again.");
       }
     } catch (err) {
