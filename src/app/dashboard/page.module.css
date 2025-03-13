@@ -42,6 +42,12 @@
   gap: 0.4rem;
 }
 
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .logoImg {
   border-radius: 50%;
   object-fit: fill;
@@ -69,9 +75,32 @@
   line-height: 1.6;
 }
 
-.loading {
-  font-size: 1.2rem;
-  color: #555;
+/* Loading animation */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  width: 100%;
+}
+
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(44, 62, 80, 0.1);
+  border-radius: 50%;
+  border-top-color: #3498db;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 15px rgba(52, 152, 219, 0.2);
+}
+
+.loadingContainer p {
+  color: #7f8c8d;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .error {

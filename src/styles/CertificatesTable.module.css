@@ -158,18 +158,25 @@
   display: table; /* Override the block display from global styles */
 }
 
-.table th, 
+.table th,
 .table td {
-  padding: 12px 16px;
+  padding: 0.8rem 1rem;
   text-align: left;
   border-bottom: 1px solid #e0e0e0;
 }
 
 .table th {
-  background-color: #f5f5f5;
+  background-color: #f8fafc;
+  color: #2c3e50;
+  font-weight: bold;
+  border: none;
+  border-bottom: 2px solid #d1d5db;
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.9rem;
   font-weight: 600;
-  position: sticky;
-  top: 0;
+  font-family: "Josefin Sans", sans-serif;
+  white-space: nowrap;
 }
 
 .link {
@@ -195,19 +202,19 @@
 
 /* Media queries for responsive design */
 @media screen and (max-width: 768px) {
-  .table th, 
+  .table th,
   .table td {
     padding: 8px 12px;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .table th, 
+  .table th,
   .table td {
     padding: 6px 8px;
     font-size: 0.9rem;
   }
-  
+
   .link {
     word-break: break-word;
   }
