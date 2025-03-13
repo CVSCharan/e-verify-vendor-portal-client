@@ -143,42 +143,75 @@ const VendorContent = () => {
         aria-label="Certificate management section"
       >
         <div className={styles.landingSection}>
-          <Image
-            height={150}
-            width={150}
-            src={
-              vendorUser?.orgPic ||
-              "https://github.com/CVSCharan/Technotran_Assets/blob/main/Picture11.png?raw=true"
-            }
-            alt={vendorUser?.org || "Vendor Logo"}
-            className={styles.logoImg}
-            priority
-          />
-          <h2 className={styles.userName}>{vendorUser?.username}</h2>
-          <div className={styles.searchBarContainer} role="search">
-            <input
-              type="text"
-              placeholder="Search by Name"
-              value={searchQuery}
-              onChange={handleSearchChange}
-              className={styles.searchBar}
-              aria-label="Search certificates by name"
+          <div className={styles.modernProfileCard}>
+            <Image
+              height={150}
+              width={150}
+              src={
+                vendorUser?.orgPic ||
+                "https://github.com/CVSCharan/Technotran_Assets/blob/main/Picture11.png?raw=true"
+              }
+              alt={vendorUser?.org || "Vendor Logo"}
+              className={styles.modernLogoImg}
+              priority
             />
-            {searchQuery && (
-              <CancelOutlinedIcon
-                onClick={handleClearSearch}
-                className={styles.clearButton}
-                aria-label="clear search"
-                role="button"
-                tabIndex={0}
+            <h2 className={styles.modernUserName}>{vendorUser?.username}</h2>
+          </div>
+          <div className={styles.elegantSearchWrapper} role="search">
+            <div className={styles.elegantSearchContainer}>
+              <input
+                type="text"
+                placeholder="Search by Name"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className={styles.elegantSearchInput}
+                aria-label="Search certificates by name"
               />
-            )}
+              <div className={styles.searchControls}>
+                {searchQuery ? (
+                  <CancelOutlinedIcon
+                    onClick={handleClearSearch}
+                    className={styles.elegantClearIcon}
+                    aria-label="clear search"
+                    role="button"
+                    tabIndex={0}
+                  />
+                ) : (
+                  <div className={styles.searchIconContainer}>
+                    <span className={styles.searchIconLine}></span>
+                    <span className={styles.searchIconCircle}></span>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
           <>
             {filteredCertificates.length === 0 ? (
-              <p className={styles.noCertificates} aria-live="polite">
-                No certificates found.
-              </p>
+              <div
+                className={styles.noCertificatesContainer}
+                aria-live="polite"
+              >
+                <div className={styles.noCertificatesIcon}>
+                  <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M19 5V19H5V5H19ZM21 3H3V21H21V3ZM17 17H7V16H17V17ZM17 15H7V14H17V15ZM17 12H7V7H17V12Z"
+                      fill="#9e9e9e"
+                    />
+                  </svg>
+                </div>
+                <p className={styles.noCertificatesText}>
+                  No certificates found
+                </p>
+                <p className={styles.noCertificatesSubtext}>
+                  Try adjusting your search
+                </p>
+              </div>
             ) : (
               <div className={styles.tableWrapper}>
                 <VendorCertificatesTable
