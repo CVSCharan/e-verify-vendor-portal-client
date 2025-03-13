@@ -98,58 +98,65 @@ const VendorPortalPage = () => {
               <label htmlFor="vendor-options" className={styles.selectLabel}>
                 Vendor Organization
               </label>
-              <select
-                id="vendor-options"
-                className={styles.selectDropdown}
-                value={selectedOrganization}
-                onChange={handleSelectChange}
-                aria-label="Select vendor organization"
-              >
-                <option value="">Select an option</option>
-                <option value="Vemu Institute of Technology, Chittoor">
-                  Vemu Institute of Technology, Chittoor
-                </option>
-                <option value="SV College of Engineering, Kadapa">
-                  SV College of Engineering, Kadapa
-                </option>
-                <option value="VNR VJIET, Hyderabad">
-                  VNR VJIET, Hyderabad
-                </option>
-                <option value="S.A Engineering College, Chennai">
-                  S.A Engineering College, Chennai
-                </option>
-                <option value="Rainbow International School, Nellore">
-                  Rainbow International School, Nellore
-                </option>
-                <option value="Prakasam Engineering College, Kandukur">
-                  Prakasam Engineering College, Kandukur
-                </option>
-                <option value="NBKR Institute of Science & Technology">
-                  NBKR Institute of Science & Technology
-                </option>
-                <option value="PBR Visvodaya Technical Academy, Kavali">
-                  PBR Visvodaya Technical Academy, Kavali
-                </option>
-                <option value="Narayana Engineering College, Nellore & Gudur">
-                  Narayana Engineering College, Nellore & Gudur
-                </option>
-                <option value="Laki Reddy Bali Reddy College of Engineering, Vijayawada">
-                  Laki Reddy Bali Reddy College of Engineering, Vijayawada
-                </option>
-                <option value="Geethanjali College of Engineering & Technology, Hyderabad">
-                  Geethanjali College of Engineering & Technology, Hyderabad
-                </option>
-                <option value="Bhoj Reddy Engineering College for Women, Hyderabad">
-                  Bhoj Reddy Engineering College for Women, Hyderabad
-                </option>
-                <option value="Audisankara College of Engineering & Technology, Gudur">
-                  Audisankara College of Engineering & Technology, Gudur
-                </option>
-                <option value="Annamacharya Institute of Technology & Sciences, Rajampet">
-                  Annamacharya Institute of Technology & Sciences, Rajampet
-                </option>
-                <option value="Sree Chaitanya">Sree Chaitanya</option>
-              </select>
+              <div className={styles.customSelectWrapper}>
+                <select
+                  id="vendor-options"
+                  className={styles.customSelect}
+                  value={selectedOrganization}
+                  onChange={handleSelectChange}
+                  aria-label="Select vendor organization"
+                >
+                  <option value="">Select an organization</option>
+                  <option value="Vemu Institute of Technology, Chittoor">
+                    Vemu Institute of Technology, Chittoor
+                  </option>
+                  <option value="SV College of Engineering, Kadapa">
+                    SV College of Engineering, Kadapa
+                  </option>
+                  <option value="VNR VJIET, Hyderabad">
+                    VNR VJIET, Hyderabad
+                  </option>
+                  <option value="S.A Engineering College, Chennai">
+                    S.A Engineering College, Chennai
+                  </option>
+                  <option value="Rainbow International School, Nellore">
+                    Rainbow International School, Nellore
+                  </option>
+                  <option value="Prakasam Engineering College, Kandukur">
+                    Prakasam Engineering College, Kandukur
+                  </option>
+                  <option value="NBKR Institute of Science & Technology">
+                    NBKR Institute of Science & Technology
+                  </option>
+                  <option value="PBR Visvodaya Technical Academy, Kavali">
+                    PBR Visvodaya Technical Academy, Kavali
+                  </option>
+                  <option value="Narayana Engineering College, Nellore & Gudur">
+                    Narayana Engineering College, Nellore & Gudur
+                  </option>
+                  <option value="Laki Reddy Bali Reddy College of Engineering, Vijayawada">
+                    Laki Reddy Bali Reddy College of Engineering, Vijayawada
+                  </option>
+                  <option value="Geethanjali College of Engineering & Technology, Hyderabad">
+                    Geethanjali College of Engineering & Technology, Hyderabad
+                  </option>
+                  <option value="Bhoj Reddy Engineering College for Women, Hyderabad">
+                    Bhoj Reddy Engineering College for Women, Hyderabad
+                  </option>
+                  <option value="Audisankara College of Engineering & Technology, Gudur">
+                    Audisankara College of Engineering & Technology, Gudur
+                  </option>
+                  <option value="Annamacharya Institute of Technology & Sciences, Rajampet">
+                    Annamacharya Institute of Technology & Sciences, Rajampet
+                  </option>
+                  <option value="Sree Chaitanya">Sree Chaitanya</option>
+                </select>
+                <div className={styles.selectIcon}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10L12 15L17 10" stroke="#4b0406" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+              </div>
             </div>
             {selectedOrganization && (
               <div className={styles.formContainer}>

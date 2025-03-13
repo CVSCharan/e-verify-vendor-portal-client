@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "@mui/material/Modal";
-import { VendorLoginModalProps } from "@/utils/types"; // Assuming you have Vendor type
+import { VendorLoginModalProps } from "@/utils/types";
 import styles from "../styles/VendorLoginModal.module.css";
 import Image from "next/image";
 import { useVendor } from "@/context/VendorContext";
@@ -13,16 +13,15 @@ export default function VendorLoginModal({
   setOpen,
   orgData,
 }: VendorLoginModalProps) {
-  const [username, setUsername] = useState(""); // State to manage the username
-  const [password, setPassword] = useState(""); // State to manage the password
-  const [error, setError] = useState<string | null>(null); // State for error message
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [forgotPasswordOpen, setForgotPasswordOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
-
   const handleClose = () => setOpen(false);
-
   const { login } = useVendor();
 
   // SEO structured data
@@ -40,11 +39,13 @@ export default function VendorLoginModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError(null);
 
     // Example validation
     if (!username || !password) {
       setError("Please enter username & password to Log In");
-      console.log(message);
+      setIsLoading(false);
       return;
     }
 
@@ -55,7 +56,7 @@ export default function VendorLoginModal({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }), // Removed orgName from body
+        body: JSON.stringify({ username, password }),
       });
 
       const data = await response.json();
@@ -72,6 +73,8 @@ export default function VendorLoginModal({
     } catch (err) {
       console.error(err);
       setError("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -92,77 +95,95 @@ export default function VendorLoginModal({
         className={styles.modalMainContainer}
       >
         <div className={styles.modalContainer}>
-          {orgData && (
-            <>
-              <h2 id="vendor-login-title" className={styles.formHeading}>
-                {orgData.name}
-              </h2>
-              <div className={styles.imageContainer}>
-                <Image
-                  src={orgData.imgSrc}
-                  alt={orgData.name}
-                  height={150}
-                  width={150}
-                  className={styles.formImg}
-                  priority
+          <div className={styles.modalHeader}>
+            {orgData && (
+              <>
+                <h2 id="vendor-login-title" className={styles.formHeading}>
+                  {orgData.name}
+                </h2>
+                <div className={styles.imageContainer}>
+                  <Image
+                    src={orgData.imgSrc}
+                    alt={orgData.name}
+                    height={150}
+                    width={150}
+                    className={styles.formImg}
+                    priority
+                  />
+                </div>
+              </>
+            )}
+          </div>
+
+          <div className={styles.modalBody}>
+            <form
+              className={styles.formContainer}
+              onSubmit={handleSubmit}
+              id="vendor-login-description"
+            >
+              <div className={styles.inputGroup}>
+                <input
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className={styles.formInput}
+                  aria-label="Username"
+                  name="username"
+                  autoComplete="username"
                 />
               </div>
-            </>
-          )}
+              
+              <div className={styles.inputGroup}>
+                <input
+                  placeholder="Password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className={styles.formInput}
+                  aria-label="Password"
+                  name="password"
+                  autoComplete="current-password"
+                />
+              </div>
 
-          {/* Login Form */}
-          <form
-            className={styles.formContainer}
-            onSubmit={handleSubmit}
-            id="vendor-login-description"
-          >
-            <input
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className={styles.formInput}
-              aria-label="Username"
-              name="username"
-              autoComplete="username"
-            />
-            <input
-              placeholder="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={styles.formInput}
-              aria-label="Password"
-              name="password"
-              autoComplete="current-password"
-            />
+              <div className={styles.forgotPasswordContainer}>
+                <button
+                  type="button"
+                  className={styles.forgotPassword}
+                  onClick={handleForgotPasswordClick}
+                  aria-label="Forgot Password"
+                >
+                  Forgot Password?
+                </button>
+              </div>
 
-            {/* Forgot Password Button */}
-            <button
-              type="button"
-              className={styles.forgotPassword}
-              onClick={() => handleForgotPasswordClick()}
-              aria-label="Forgot Password"
-            >
-              Forgot Password?
-            </button>
+              <div className={styles.buttonContainer}>
+                <button
+                  className={styles.formButton}
+                  type="submit"
+                  aria-label="Log In"
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <span className={styles.loadingSpinner}></span>
+                  ) : (
+                    "Log In"
+                  )}
+                </button>
+              </div>
 
-            <button
-              className={styles.formButton}
-              type="submit"
-              aria-label="Log In"
-            >
-              Log In
-            </button>
-
-            {error && (
-              <p className={styles.formMsg} role="alert">
-                {error}
-              </p>
-            )}
-          </form>
+              {error && (
+                <div className={styles.errorContainer}>
+                  <p className={styles.formMsg} role="alert">
+                    {error}
+                  </p>
+                </div>
+              )}
+            </form>
+          </div>
         </div>
       </Modal>
-      {/* Forgot Password Modal */}
+      
       <ForgotPasswordModal
         target="Vendor"
         open={forgotPasswordOpen}

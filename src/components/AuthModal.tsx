@@ -1,14 +1,29 @@
 "use client";
-import React from "react";
-import { Modal } from "@mui/material";
+import React, { useEffect } from "react";
+import { Modal, Backdrop, Fade } from "@mui/material";
 import { useRouter } from "next/navigation";
 import styles from "../styles/AdminAuthModal.module.css";
 import { LoginModalProps } from "@/utils/types";
 import { useVendor } from "@/context/VendorContext";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 const LoginModal: React.FC<LoginModalProps> = ({ authParams }) => {
   const vendorContext = useVendor();
   const router = useRouter();
+
+  // Handle escape key press
+  useEffect(() => {
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        handleGoToLogin();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapeKey);
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, []);
 
   const handleGoToLogin = () => {
     vendorContext.setShowModal(false); // Close modal on redirection
@@ -22,27 +37,37 @@ const LoginModal: React.FC<LoginModalProps> = ({ authParams }) => {
       aria-labelledby="login-auth-modal-title"
       aria-describedby="login-auth-modal-description"
       role="dialog"
+      closeAfterTransition
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500,
+      }}
     >
-      <div
-        className={styles.modalContainer}
-        role="alertdialog"
-        aria-modal="true"
-        tabIndex={-1}
-      >
-        <h2 id="login-auth-modal-title" className={styles.heading}>
-          Authentication Required
-        </h2>
-        <p id="login-auth-modal-description" className={styles.subHeading}>
-          Please log in to access this page.
-        </p>
-        <button
-          onClick={handleGoToLogin}
-          className={styles.routeButton}
-          aria-label={`Log in to ${authParams} portal`}
+      <Fade in={true}>
+        <div
+          className={styles.modalContainer}
+          role="alertdialog"
+          aria-modal="true"
+          tabIndex={-1}
         >
-          Log In
-        </button>
-      </div>
+          <div className={styles.iconContainer}>
+            <LockOutlinedIcon className={styles.lockIcon} />
+          </div>
+          <h2 id="login-auth-modal-title" className={styles.heading}>
+            Authentication Required
+          </h2>
+          <p id="login-auth-modal-description" className={styles.subHeading}>
+            Please log in to access this page.
+          </p>
+          <button
+            onClick={handleGoToLogin}
+            className={styles.routeButton}
+            aria-label={`Log in to ${authParams} portal`}
+          >
+            Log In
+          </button>
+        </div>
+      </Fade>
     </Modal>
   );
 };

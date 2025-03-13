@@ -11,6 +11,7 @@ import Head from "next/head";
 const VendorVerifyComp: React.FC<VendorVerifyCompProps> = ({ org }) => {
   const [orgData, setOrgData] = useState<Vendor | null>(null); // Use Vendor type
   const [openModal, setOpenModal] = useState(false); // State to control modal visibility
+  const [isLoading, setIsLoading] = useState(true);
 
   // SEO structured data
   const structuredData = {
@@ -29,13 +30,19 @@ const VendorVerifyComp: React.FC<VendorVerifyCompProps> = ({ org }) => {
     }
   };
 
-  // Debugging: Log the org prop and vendorsData
   useEffect(() => {
+    setIsLoading(true);
     const selectedOrg = vendorsData.find(
       (client) => client.name.trim().toLowerCase() === org.trim().toLowerCase()
     );
-    console.log(org, selectedOrg);
     setOrgData(selectedOrg ? selectedOrg : null); // Handle undefined case
+    
+    // Add a small delay to show loading state
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 600);
+    
+    return () => clearTimeout(timer);
   }, [org]); // Re-run the effect whenever org changes
 
   const handleLoginClick = () => {
@@ -50,37 +57,54 @@ const VendorVerifyComp: React.FC<VendorVerifyCompProps> = ({ org }) => {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </Head>
-      {orgData && (
+      
+      {isLoading ? (
+        <div className={styles.loadingContainer}>
+          <div className={styles.loadingSpinner}></div>
+          <p>Loading...</p>
+        </div>
+      ) : orgData ? (
         <div 
-          className={styles.formContainer}
+          className={styles.vendorCard}
           itemScope
           itemType="https://schema.org/Organization"
         >
-          <Image
-            height={150}
-            width={150}
-            src={orgData.imgSrc}
-            alt={orgData.name}
-            className={styles.formImg}
-            priority
-            itemProp="image"
-          />
-          <h2 
-            className={styles.formHeading}
-            itemProp="name"
-            id="vendor-organization-heading"
-          >
-            {orgData.name}
-          </h2>
-
-          <button 
-            className={styles.formButton} 
-            onClick={handleLoginClick}
-            aria-label={`Login to ${orgData.name}`}
-            aria-describedby="vendor-organization-heading"
-          >
-            Login
-          </button>
+          <div className={styles.cardContent}>
+            <div className={styles.imageWrapper}>
+              <Image
+                height={80}
+                width={80}
+                src={orgData.imgSrc}
+                alt={orgData.name}
+                className={styles.vendorLogo}
+                priority
+                itemProp="image"
+              />
+            </div>
+            
+            <div className={styles.vendorInfo}>
+              <h2 
+                className={styles.vendorName}
+                itemProp="name"
+                id="vendor-organization-heading"
+              >
+                {orgData.name}
+              </h2>
+              
+              <button 
+                className={styles.loginButton} 
+                onClick={handleLoginClick}
+                aria-label={`Login to ${orgData.name}`}
+                aria-describedby="vendor-organization-heading"
+              >
+                Login
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.errorContainer}>
+          <p>Organization not found.</p>
         </div>
       )}
 

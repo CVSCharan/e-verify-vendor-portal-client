@@ -1,134 +1,93 @@
 .modalMainContainer {
-  height: 100vh;
-  width: 100vw;
   display: flex;
-  justify-content: center;
   align-items: center;
-  backdrop-filter: blur(4px); /* Blur effect */
-  background-color: rgba(0, 0, 0, 0.3); /* Darken slightly */
+  justify-content: center;
+  backdrop-filter: blur(5px);
 }
 
 .modalContainer {
-  height: auto;
-  min-height: 300px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 2.5rem;
   width: 90%;
-  max-width: 500px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 0.5rem;
-  border-radius: 1rem;
-  padding: 1.5rem; /* Added padding for a spacious feel */
-  background-color: #f8fafc; /* Light background color */
-  background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px),
-    radial-gradient(circle, #d1d5db 1px, transparent 1px); /* Grid pattern */
-  background-position: 0 0, 25px 25px; /* Offset the grid */
-  background-size: 50px 50px; /* Set the grid size */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
   outline: none;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+  gap: 1rem;
 }
 
-.heading {
-  margin-bottom: 1rem;
-  font-family: "Georgia", serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-align: center;
-  line-height: 1.6;
-  width: 100%;
+.modalContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #4b0406, #7a0a0c);
 }
 
-.subHeading {
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-  font-weight: 500;
-  font-family: "Georgia", serif;
-  color: #34495e; /* Softer gray */
-  text-align: center;
-  line-height: 1.6;
-  width: 100%;
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: #f8f4f4;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+}
+
+.lockIcon {
+  font-size: 28px !important;
+  color: #4b0406;
 }
 
 .routeButton {
-  padding: 0.5rem 2rem;
-  background: linear-gradient(90deg, #4b0406, #6b0f12, #a82b30);
+  background: linear-gradient(90deg, #4b0406, #7a0a0c);
   color: white;
-  font-size: 1.1rem;
-  font-weight: 500;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-width: 150px;
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(75, 4, 6, 0.1);
 }
 
 .routeButton:hover {
-  background: linear-gradient(90deg, #4b0406, #6b0f12, #a82b30);
   transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 8px rgba(75, 4, 6, 0.2);
 }
 
-/* Media Queries for Responsiveness */
-@media only screen and (max-width: 768px) {
+.routeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(75, 4, 6, 0.3);
+}
+
+@media (max-width: 480px) {
   .modalContainer {
-    padding: 1.2rem;
+    padding: 2rem 1.5rem;
   }
 
   .heading {
     font-size: 1.3rem;
   }
 
-  .subHeading {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
+  .iconContainer {
+    width: 50px;
+    height: 50px;
   }
 
-  .routeButton {
-    font-size: 1rem;
-    padding: 0.5rem 1.5rem;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .modalContainer {
-    padding: 1rem;
-    min-height: 250px;
-  }
-
-  .heading {
-    font-size: 1.2rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .subHeading {
-    font-size: 0.9rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .routeButton {
-    font-size: 0.9rem;
-    padding: 0.4rem 1.2rem;
-    min-width: 120px;
-  }
-}
-
-@media only screen and (max-width: 360px) {
-  .modalContainer {
-    padding: 0.8rem;
-  }
-
-  .heading {
-    font-size: 1.1rem;
-  }
-
-  .subHeading {
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
-  }
-
-  .routeButton {
-    font-size: 0.85rem;
-    padding: 0.4rem 1rem;
+  .lockIcon {
+    font-size: 24px !important;
   }
 }
