@@ -1,103 +1,172 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Navbar from "@/sections/VendorNav";
+import React, { useEffect, useState } from "react";
+import styles from "./page.module.css";
+import Footer from "@/sections/Footer";
+import VendorVerifyComp from "@/components/VendorVerifyComp";
+import Head from "next/head";
+
+const VendorPortalPage = () => {
+  const [selectedOrganization, setSelectedOrganization] = useState("");
+  const [openModal, setOpenModal] = useState(false); // Add state for the modal
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedOrganization(event.target.value);
+  };
+
+  useEffect(() => {
+    setSelectedOrganization("");
+  }, []);
+
+  // SEO structured data
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Vendor E-Verify Portal",
+    applicationCategory: "BusinessApplication",
+    description:
+      "Platform for verifying the authenticity of certificates issued by educational institutions",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Technotran Solutions",
+    },
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <>
+      <Head>
+        <title>Vendor E-Verify Portal | Certificate Verification System</title>
+        <meta
+          name="description"
+          content="Verify the authenticity of certificates issued by educational institutions through Technotran Solutions' E-Verify Portal."
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        <meta
+          name="keywords"
+          content="certificate verification, e-verify, educational certificates, document verification, Technotran Solutions"
+        />
+        <meta
+          property="og:title"
+          content="Vendor E-Verify Portal | Certificate Verification System"
+        />
+        <meta
+          property="og:description"
+          content="Verify the authenticity of certificates issued by educational institutions through Technotran Solutions' E-Verify Portal."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Technotran E-Verify" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Vendor E-Verify Portal | Certificate Verification System"
+        />
+        <meta
+          name="twitter:description"
+          content="Verify the authenticity of certificates issued by educational institutions through Technotran Solutions' E-Verify Portal."
+        />
+        <link
+          rel="canonical"
+          href="https://e-verify.technotran.com/vendor-portal"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <main id="E-Verify Vendor Portal" aria-label="Vendor E-Verify Portal" className={styles.responsiveMain}>
+        <Navbar />
+        <section className={styles.mainBody}>
+          <div className={styles.landingSection}>
+            <div className={styles.welcomeSection}>
+              <h1 className={styles.heading}>Vendor E-Verify Portal</h1>
+              <h2 className={styles.subHeading}>
+                A Technotran Solutions Venture
+              </h2>
+              <p className={styles.welcomeText}>
+                This platform is dedicated to verifying the authenticity of
+                certificates issued by our organization.
+              </p>
+            </div>
+            {/* Add Select Component */}
+            <div className={styles.selectContainer}>
+              <label htmlFor="vendor-options" className={styles.selectLabel}>
+                Vendor Organization
+              </label>
+              <select
+                id="vendor-options"
+                className={styles.selectDropdown}
+                value={selectedOrganization}
+                onChange={handleSelectChange}
+                aria-label="Select vendor organization"
+              >
+                <option value="">Select an option</option>
+                <option value="Vemu Institute of Technology, Chittoor">
+                  Vemu Institute of Technology, Chittoor
+                </option>
+                <option value="SV College of Engineering, Kadapa">
+                  SV College of Engineering, Kadapa
+                </option>
+                <option value="VNR VJIET, Hyderabad">
+                  VNR VJIET, Hyderabad
+                </option>
+                <option value="S.A Engineering College, Chennai">
+                  S.A Engineering College, Chennai
+                </option>
+                <option value="Rainbow International School, Nellore">
+                  Rainbow International School, Nellore
+                </option>
+                <option value="Prakasam Engineering College, Kandukur">
+                  Prakasam Engineering College, Kandukur
+                </option>
+                <option value="NBKR Institute of Science & Technology">
+                  NBKR Institute of Science & Technology
+                </option>
+                <option value="PBR Visvodaya Technical Academy, Kavali">
+                  PBR Visvodaya Technical Academy, Kavali
+                </option>
+                <option value="Narayana Engineering College, Nellore & Gudur">
+                  Narayana Engineering College, Nellore & Gudur
+                </option>
+                <option value="Laki Reddy Bali Reddy College of Engineering, Vijayawada">
+                  Laki Reddy Bali Reddy College of Engineering, Vijayawada
+                </option>
+                <option value="Geethanjali College of Engineering & Technology, Hyderabad">
+                  Geethanjali College of Engineering & Technology, Hyderabad
+                </option>
+                <option value="Bhoj Reddy Engineering College for Women, Hyderabad">
+                  Bhoj Reddy Engineering College for Women, Hyderabad
+                </option>
+                <option value="Audisankara College of Engineering & Technology, Gudur">
+                  Audisankara College of Engineering & Technology, Gudur
+                </option>
+                <option value="Annamacharya Institute of Technology & Sciences, Rajampet">
+                  Annamacharya Institute of Technology & Sciences, Rajampet
+                </option>
+                <option value="Sree Chaitanya">Sree Chaitanya</option>
+              </select>
+            </div>
+            {selectedOrganization && (
+              <div className={styles.formContainer}>
+                {/* Pass openModal and setOpenModal to VendorVerifyComp */}
+                <VendorVerifyComp
+                  org={selectedOrganization}
+                  openModal={openModal}
+                  setOpenModal={setOpenModal}
+                />
+              </div>
+            )}
+          </div>
+        </section>
+        <Footer />
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    </>
   );
-}
+};
+
+export default VendorPortalPage;
