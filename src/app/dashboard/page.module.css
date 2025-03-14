@@ -152,79 +152,11 @@
   background-color: white;
 }
 
-/* Professional Search Bar Styles */
-.professionalSearchContainer {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 450px;
-  margin: 1.5rem 0;
-  background-color: #ffffff;
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  padding: 0 12px;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.professionalSearchContainer:focus-within {
-  border-color: #0070f3;
-  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
-}
-
-.searchIconWrapper {
-  display: flex;
-  align-items: center;
-  padding-right: 8px;
-  color: #6e7781;
-}
-
-.searchIcon {
-  width: 16px;
-  height: 16px;
-}
-
-.professionalSearchBar {
-  flex: 1;
-  height: 40px;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 14px;
-  color: #24292f;
-  font-family: inherit;
-  padding: 0;
-}
-
-.professionalSearchBar::placeholder {
-  color: #6e7781;
-}
-
-.professionalClearButton {
-  color: #6e7781;
-  cursor: pointer;
-  font-size: 18px !important;
-  transition: color 0.2s ease;
-  padding: 4px;
-}
-
-.professionalClearButton:hover {
-  color: #24292f;
-}
-
-@media (max-width: 768px) {
-  .professionalSearchContainer {
-    max-width: 100%;
-  }
-}
-
-
 /* Elegant Search Bar Styles */
 .elegantSearchWrapper {
   width: 100%;
   max-width: 450px;
-  margin: 1.5rem 0;
+  margin: 0.5rem 0;
   position: relative;
 }
 
