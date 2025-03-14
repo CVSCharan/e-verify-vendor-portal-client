@@ -123,23 +123,25 @@ export default function VendorLoginModal({
             >
               <div className={styles.inputGroup}>
                 <input
+                  id="username"
                   placeholder="Username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className={styles.formInput}
+                  className={`${styles.formInput} ${styles.usernameInput}`}
                   aria-label="Username"
                   name="username"
                   autoComplete="username"
                 />
               </div>
-              
+
               <div className={styles.inputGroup}>
                 <input
+                  id="password"
                   placeholder="Password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className={styles.formInput}
+                  className={`${styles.formInput} ${styles.passwordInput}`}
                   aria-label="Password"
                   name="password"
                   autoComplete="current-password"
@@ -183,7 +185,7 @@ export default function VendorLoginModal({
           </div>
         </div>
       </Modal>
-      
+
       <ForgotPasswordModal
         target="Vendor"
         open={forgotPasswordOpen}
