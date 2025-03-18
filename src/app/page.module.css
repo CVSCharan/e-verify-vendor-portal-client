@@ -190,7 +190,7 @@
     max-width: 450px;
   }
 
-  .formContainer, 
+  .formContainer,
   .selectContainer {
     max-width: 75%;
   }
@@ -202,23 +202,23 @@
   .customSelectWrapper {
     max-width: 90%;
   }
-  
+
   .mainBody {
     padding: 1rem;
   }
-  
+
   .welcomeSection {
     width: 100%;
   }
-  
+
   .welcomeText {
     padding: 0 0.5rem;
   }
-  
+
   .selectContainer {
     margin: 1rem 0;
   }
-  
+
   .selectDropdown,
   .customSelect {
     max-width: 100%;
@@ -229,12 +229,12 @@
   .landingSection {
     min-height: 90vh;
   }
-  
+
   .formContainer,
   .selectContainer {
     max-width: 95%;
   }
-  
+
   .welcomeText {
     padding: 0 0.5rem;
   }
