@@ -3,7 +3,7 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import styles from "../styles/VendorVerifyComp.module.css";
 import Image from "next/image";
-import { Vendor, Vendors, VendorVerifyCompProps } from "@/utils/types";
+import { Vendors, VendorVerifyCompProps } from "@/utils/types";
 import VendorLoginModal from "./VendorLoginModal"; // Import the modal component
 import Head from "next/head";
 
