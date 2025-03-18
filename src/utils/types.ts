@@ -80,7 +80,7 @@ export interface Vendors {
 export interface VendorLoginModalProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  orgData: Vendor | null; // Accept orgData as a prop
+  orgData: Vendors | null; // Accept orgData as a prop
 }
 
 export interface CertificatesTableProps {

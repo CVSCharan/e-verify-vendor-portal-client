@@ -51,7 +51,7 @@ export default function VendorLoginModal({
 
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-      const response = await fetch(`${apiUrl}/vendors/login/${orgData?.name}`, {
+      const response = await fetch(`${apiUrl}/vendors/login/${orgData?.org}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -99,11 +99,11 @@ export default function VendorLoginModal({
             {orgData && (
               <>
                 <h2 id="vendor-login-title" className={styles.formHeading}>
-                  {orgData.name}
+                  {orgData.org}
                 </h2>
                 <div className={styles.imageContainer}>
                   <Image
-                    src={orgData.imgSrc}
+                    src={orgData.orgPic}
                     alt={orgData.name}
                     height={150}
                     width={150}
