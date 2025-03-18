@@ -34,7 +34,12 @@ const VendorCertificatesTable: React.FC<VendorCertificatesTableProps> = ({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </Head>
-      <div className={styles.responsiveTableContainer} role="region" aria-label="Certificates table" tabIndex={0}>
+      <div
+        className={styles.responsiveTableContainer}
+        role="region"
+        aria-label="Certificates table"
+        tabIndex={0}
+      >
         <div className={styles.tableWrapper}>
           <table className={styles.table} aria-label="Vendor certificates">
             <caption className={styles.visuallyHidden}>
@@ -53,7 +58,7 @@ const VendorCertificatesTable: React.FC<VendorCertificatesTableProps> = ({
                 <tr key={certificate._id}>
                   <td>
                     <Link
-                      href={`https://e-verify.technotran.in/certificate/${certificate.certificateId}`}
+                      href={`https://e-verify.robomonk.ai/certificate/${certificate.certificateId}`}
                       className={styles.link}
                       aria-label={`View certificate for ${certificate.name}`}
                       target="_blank"
@@ -63,7 +68,9 @@ const VendorCertificatesTable: React.FC<VendorCertificatesTableProps> = ({
                   </td>
                   <td>{certificate.type}</td>
                   <td>{certificate.department}</td>
-                  <td>{new Date(certificate.issueDate).toLocaleDateString()}</td>
+                  <td>
+                    {new Date(certificate.issueDate).toLocaleDateString()}
+                  </td>
                 </tr>
               ))}
             </tbody>
